@@ -1,12 +1,19 @@
 import {fetchWeather, fetchForecast} from './weather.js';
-import * as elem from './elements.js';
-const testCity = 'Minsk';
+import {citySelect, cityName, imgWeather} from './elements.js';
 
-function getWeather() {
-    fetchWeather(testCity)
-    .then(data => console.log(data));
+function getWeather(city) {
+    console.log(city);
+    fetchWeather(city)
+    .then(data => displayWeather(data));
 };
+
+function displayWeather(data) {
+    console.log(data);
+    cityName.innerHTML = data.name;
+}
 
 getWeather();
 
-console.log(elem.cityName);
+citySelect.addEventListener('change', () => getWeather(citySelect.options[citySelect.selectedIndex].value));
+
+console.log(citySelect.options[citySelect.selectedIndex].value);
