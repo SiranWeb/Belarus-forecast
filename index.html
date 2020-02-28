@@ -7,7 +7,31 @@
     <title>Weather Service for Belarus</title>
 </head>
 <body>
-    <script src="./src/weather.js" type="module"></script>
+    <div id="app">
+        <div class="container">
+            <div class="city-weather">
+                <h2 class="city-name">Minsk</h2>
+                <select name="cities" id="cities">
+                    <option value="minsk">Minsk</option>
+                    <option value="vitebsk">Vitebsk</option>
+                    <option value="mogilev">Mogilev</option>
+                    <option value="gomel">Gomel</option>
+                    <option value="brest">Brest</option>
+                    <option value="grodno">Grodno</option>
+                </select>   
+            </div>
+            <div class="city-info">
+                hey man, <br> nice city
+            </div>
+            <div class="city-forecast">
+                <div class="forecast-day">1</div>
+                <div class="forecast-day">2</div>
+                <div class="forecast-day">3</div>
+                <div class="forecast-day">4</div>
+                <div class="forecast-day">5</div>
+            </div>
+        </div>
+    </div>
     <script src="./src/index.js" type="module"></script>
 </body>
 </html>
