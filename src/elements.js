@@ -6,3 +6,6 @@ export const cityTemp = document.querySelector('.city-temperature');
 export const windArrow = document.querySelector('.wind-arrow');
 export const windSpeed = document.querySelector('.wind-speed');
 export const dateElem = document.querySelector('.date');
+export const visibilityElem = document.querySelector('.visibility');
+export const humidityElem = document.querySelector('.humidity');
+export const pressureElem = document.querySelector('.pressure');

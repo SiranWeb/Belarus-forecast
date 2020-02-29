@@ -1,5 +1,5 @@
 import {fetchWeather, fetchForecast} from './weather.js';
-import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, windSpeed, dateElem} from './elements.js';
+import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, windSpeed, dateElem, visibilityElem, humidityElem, pressureElem} from './elements.js';
 
 function getWeather(city) {
     fetchWeather(city)
@@ -28,8 +28,7 @@ Date.prototype.getDayString = function() {
 
 function displayWeather(data) {
     console.log(data);
-    // Grodno name fix
-    cityName.innerHTML = `${data.name == 'Hrodna' ? 'Grodno' : data.name}, `;
+    cityName.innerHTML = `${data.name == 'Hrodna' ? 'Grodno' : data.name}, `; // Grodno name fix
     const weatherDate = new Date();
     dateElem.innerHTML = `${weatherDate.getDayString()}, ${weatherDate.getHours()}:${weatherDate.getMinutes()}`;
     imgWeather.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
@@ -37,6 +36,9 @@ function displayWeather(data) {
     cityTemp.innerHTML = Math.floor(data.main.temp - 273.15) + '°С';
     windArrow.style.transform = `rotate(${data.wind.deg + 90}deg)`;
     windSpeed.innerHTML = `${data.wind.speed} m/s`;
+    visibilityElem.innerHTML = `Visibility: ${data.visibility / 1000} km`;
+    humidityElem.innerHTML = `Humidity: ${data.main.humidity}%`;
+    pressureElem.innerHTML = `Pressure: ${data.main.pressure} mbar`;
 };
 
 getWeather();
