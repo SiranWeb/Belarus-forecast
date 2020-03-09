@@ -1,13 +1,19 @@
 import {fetchWeather, fetchForecast} from './weather.js';
-import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, windSpeed, dateElem, visibilityElem, humidityElem, pressureElem} from './elements.js';
+import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, windSpeed, dateElem, visibilityElem, humidityElem, pressureElem, forecastDate, forecastCityTemp, imgForecastWeather, forecastWeatherDescrp} from './elements.js';
+
+const currentDate = new Date();
 
 function getWeather(city) {
     fetchWeather(city)
     .then(data => displayWeather(data));
 };
 
-Date.prototype.getDayString = function() {
-    const day = this.getDay();
+function getForecast(city) {
+    fetchForecast(city)
+    .then(data => displayForecast(data));
+};
+
+Date.prototype.getDayString = function(day = this.getDay()) {
     switch(day) {
         case 0:
             return 'Sunday';
@@ -29,8 +35,7 @@ Date.prototype.getDayString = function() {
 function displayWeather(data) {
     console.log(data);
     cityName.innerHTML = `${data.name == 'Hrodna' ? 'Grodno' : data.name}, `; // Grodno name fix
-    const weatherDate = new Date();
-    dateElem.innerHTML = `${weatherDate.getDayString()}, ${weatherDate.getHours()}:${weatherDate.getMinutes()}`;
+    dateElem.innerHTML = `${currentDate.getDayString()}, ${currentDate.getHours()}:${currentDate.getMinutes()}`;
     imgWeather.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
     weatherDescrp.innerHTML = data.weather[0].description;
     cityTemp.innerHTML = Math.floor(data.main.temp - 273.15) + '°С';
@@ -41,6 +46,25 @@ function displayWeather(data) {
     pressureElem.innerHTML = `Pressure: ${data.main.pressure} mbar`;
 };
 
-getWeather();
+function displayForecast(data) {
+    console.log(data);
+    for (let i = 0; i < 5; i++) {
+        forecastDate[i].innerHTML = (currentDate.getDay() + i) > 7 ? currentDate.getDayString((currentDate.getDay() + i) / 7) : currentDate.getDayString(currentDate.getDay() + i);
+        forecastCityTemp[i].innerHTML =  Math.floor(data.list[i + 1].main.temp - 273.15) + '°С';
+        imgForecastWeather[i].src = `http://openweathermap.org/img/w/${data.list[i + 1].weather[0].icon}.png`;
+        forecastWeatherDescrp[i].innerHTML = `${data.list[i + 1].weather[0].description}`;
+    }
+    
+}
 
-citySelect.addEventListener('change', () => getWeather(citySelect.options[citySelect.selectedIndex].value));
+
+
+function getWeatherAndForecast(city) {
+    getWeather(city);
+    getForecast(city);
+};
+
+getWeather();
+getForecast();
+
+citySelect.addEventListener('change', () => getWeatherAndForecast(citySelect.options[citySelect.selectedIndex].value));

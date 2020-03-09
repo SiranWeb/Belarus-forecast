@@ -14,17 +14,26 @@ body {
     min-width: 500px;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1.5fr .1fr 3fr;
+    grid-template-rows: 1fr .1fr 1fr;
 }
 
-.city-weather {
+.city-weather, .city-forecast, .city-info {
     -webkit-box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
     box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
     border-radius: 25px;
     background: rgba(255,255,255,0.7);
 }
+
+.city-info {
+    grid-column: 3 / 4;
+}
+
+.city-forecast {
+    grid-row: 3 / 4;
+}
+
 
 h2 {
     margin: 10px 0 0 10px;
@@ -57,14 +66,16 @@ div {
 
 .city-forecast {
     display: grid;
-    grid-column: span 2;
+    grid-column: span 3;
     grid-template-columns: repeat(5, 1fr);
 }
+
+
 
 .weather-bottom {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1.2fr;
+    grid-template-columns: 0.8fr 0.5fr 1.2fr;
 }
 
 .weather-descrp, .wind-title, .wind-speed {
@@ -81,6 +92,10 @@ div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.other-info > p {
+    margin-left: 10px;
 }
 
 #cities {

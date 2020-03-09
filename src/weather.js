@@ -7,6 +7,7 @@ export async function fetchWeather(city) {
 };
 
 export async function fetchForecast(city) {
+    city == undefined ? city = 'minsk' : city = city;
     const rawData = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${API_KEY}`);
     return await rawData.json();
 };
