@@ -29,6 +29,8 @@ Date.prototype.getDayString = function(day = this.getDay()) {
             return 'Friday';
         case 6:
             return 'Saturday';
+        default: 
+            return `numDay: ${day}`;
     }
 };
 
@@ -49,10 +51,12 @@ function displayWeather(data) {
 function displayForecast(data) {
     console.log(data);
     for (let i = 0; i < 5; i++) {
-        forecastDate[i].innerHTML = (currentDate.getDay() + i) > 7 ? currentDate.getDayString((currentDate.getDay() + i) / 7) : currentDate.getDayString(currentDate.getDay() + i);
-        forecastCityTemp[i].innerHTML =  Math.floor(data.list[i + 1].main.temp - 273.15) + '°С';
-        imgForecastWeather[i].src = `http://openweathermap.org/img/w/${data.list[i + 1].weather[0].icon}.png`;
-        forecastWeatherDescrp[i].innerHTML = `${data.list[i + 1].weather[0].description}`;
+        const dayName = (currentDate.getDay() + i) >= 7 ? currentDate.getDayString((currentDate.getDay() + i) % 7) : currentDate.getDayString(currentDate.getDay() + i);
+        const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).replace('-', '.');
+        forecastDate[i].innerHTML = `${dayName} (${dayAndMonth})`;
+        forecastCityTemp[i].innerHTML =  Math.floor(data.list[i*8 + 3].main.temp - 273.15) + '°С';
+        imgForecastWeather[i].src = `http://openweathermap.org/img/w/${data.list[i*8 + 3].weather[0].icon}.png`;
+        forecastWeatherDescrp[i].innerHTML = `${data.list[i*8 + 3].weather[0].description}`;
     }
     
 }
