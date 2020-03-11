@@ -52,7 +52,7 @@ function displayForecast(data) {
     console.log(data);
     for (let i = 0; i < 5; i++) {
         const dayName = (currentDate.getDay() + i) >= 7 ? currentDate.getDayString((currentDate.getDay() + i) % 7) : currentDate.getDayString(currentDate.getDay() + i);
-        const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).replace('-', '.');
+        const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).split('-').reverse().join('.');
         forecastDate[i].innerHTML = `${dayName} (${dayAndMonth})`;
         forecastCityTemp[i].innerHTML =  Math.floor(data.list[i*8 + 3].main.temp - 273.15) + '°С';
         imgForecastWeather[i].src = `http://openweathermap.org/img/w/${data.list[i*8 + 3].weather[0].icon}.png`;

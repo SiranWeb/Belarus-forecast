@@ -15,7 +15,7 @@ body {
     max-width: 1200px;
     display: grid;
     grid-template-columns: 1.5fr .1fr 3fr;
-    grid-template-rows: 1fr .1fr 1fr;
+    grid-template-rows: 1fr .05fr .5fr;
 }
 
 .city-weather, .city-forecast, .city-info {
@@ -29,11 +29,6 @@ body {
 .city-info {
     grid-column: 3 / 4;
 }
-
-.city-forecast {
-    grid-row: 3 / 4;
-}
-
 
 h2 {
     margin: 10px 0 0 10px;
@@ -68,6 +63,7 @@ div {
     display: grid;
     grid-column: span 3;
     grid-template-columns: repeat(5, 1fr);
+    grid-row: 3;
 }
 
 
@@ -112,3 +108,20 @@ div {
     cursor: pointer;
     outline: 0;
 }
+
+.forecast-day {
+    border-right: 1px solid rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.forecast-day:last-child {
+    border-right: none;
+}
+
+.forecast-date {
+    font-size: 17px;
+}
+
