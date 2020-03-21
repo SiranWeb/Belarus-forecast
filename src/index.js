@@ -43,7 +43,7 @@ Date.prototype.getDayString = function(day = this.getDay()) {
 };
 
 function displayWeather(data) {
-    console.log(data);
+    // console.log(data);
     cityName.innerHTML = `${data.name == 'Hrodna' ? 'Grodno' : data.name}, `; // Grodno name fix
     dateElem.innerHTML = `${currentDate.getDayString()}, ${currentDate.getHours()}:${currentDate.getMinutes()}`;
     imgWeather.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
@@ -57,7 +57,7 @@ function displayWeather(data) {
 };
 
 function displayForecast(data) {
-    console.log(data);
+    // console.log(data);
     for (let i = 0; i < 5; i++) {
         const dayName = (currentDate.getDay() + i) >= 7 ? currentDate.getDayString((currentDate.getDay() + i) % 7) : currentDate.getDayString(currentDate.getDay() + i);
         const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).split('-').reverse().join('.');
@@ -87,7 +87,7 @@ function getDataForChart() {
         }
         
     }
-    console.log(chartRows);
+    // console.log(chartRows);
     return [chartRows, chartTicks];
 };
 
