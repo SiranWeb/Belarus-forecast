@@ -1,4 +1,4 @@
-export function createChart(rows) {
+export function createChart([rows, dynamicTicks]) {
     google.charts.load('current', {
         packages: ['corechart', 'line']
     });
@@ -20,7 +20,8 @@ export function createChart(rows) {
                 title: 'Temperature, °С'
             },
             legend: 'none',
-            pointSize: 6
+            pointSize: 6,
+            ticks: dynamicTicks
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart'));

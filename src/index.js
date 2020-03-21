@@ -3,15 +3,22 @@ import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, wi
 import {createChart} from './createChart.js'
 
 const currentDate = new Date();
-
+let forecastData, weatherData;
 function getWeather(city) {
     fetchWeather(city)
-    .then(data => displayWeather(data));
+    .then(data => {
+        weatherData = data;
+        return displayWeather(weatherData);
+    });
 };
 
 function getForecast(city) {
     fetchForecast(city)
-    .then(data => displayForecast(data));
+    .then(data => {
+        forecastData = data;
+        return displayForecast(forecastData);
+    })
+    .then(() => createChart(getDataForChart()));
 };
 
 Date.prototype.getDayString = function(day = this.getDay()) {
@@ -60,22 +67,25 @@ function displayForecast(data) {
         forecastWeatherDescrp[i].innerHTML = `${data.list[i*8 + 3].weather[0].description}`;
     }
     
-}
-
-
-
-function getWeatherAndForecast(city) {
-    getWeather(city);
-    getForecast(city);
-    createChart([[1, 10],[2, 3],[3, 1]]);
 };
 
-getWeather();
-getForecast();
-createChart([
-    [[9, 30, 0, 0], 2],
-    [[10, 0, 0, 0], 5],
-    [[10, 30, 0, 0], 8]
-]);
+function getDataForChart() {
+    let chartRows = [];
+    let chartTicks = [];
+    for (let i = 0; i <= 7; i++) {
+        const currentItem = forecastData.list[i];
+        const date = new Date(currentItem.dt * 1000);
+        chartRows.push([[date.getHours(), 0, 0, 0], currentItem.main.temp - 273.15]);
+        chartTicks.push([date.getHours(), 0, 0, 0]);
+    }
+    console.log(chartRows);
+    return [chartRows, chartTicks];
+};
 
+function getWeatherAndForecast(city = 'Minsk') {
+    getWeather(city);
+    getForecast(city);
+};
+
+getWeatherAndForecast();
 citySelect.addEventListener('change', () => getWeatherAndForecast(citySelect.options[citySelect.selectedIndex].value));
