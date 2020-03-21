@@ -51,9 +51,9 @@ function displayWeather(data) {
     cityTemp.innerHTML = Math.floor(data.main.temp - 273.15) + '°С';
     windArrow.style.transform = `rotate(${data.wind.deg + 90}deg)`;
     windSpeed.innerHTML = `${data.wind.speed} m/s`;
-    visibilityElem.innerHTML = `Visibility: ${data.visibility / 1000} km`;
-    humidityElem.innerHTML = `Humidity: ${data.main.humidity}%`;
-    pressureElem.innerHTML = `Pressure: ${data.main.pressure} mbar`;
+    visibilityElem.innerHTML = `Visibility: ${(data.visibility) ? data.visibility / 1000 : '??'} km`;
+    humidityElem.innerHTML = `Humidity: ${(data.main.humidity) ? data.main.humidity : '?? '}%`;
+    pressureElem.innerHTML = `Pressure: ${(data.main.pressure) ? data.main.pressure : '??'} mbar`;
 };
 
 function displayForecast(data) {
