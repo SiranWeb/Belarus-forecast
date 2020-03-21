@@ -15,10 +15,10 @@ body {
     max-width: 1200px;
     display: grid;
     grid-template-columns: 1.5fr .1fr 3fr;
-    grid-template-rows: 1fr .05fr .5fr;
+    grid-template-rows: .6fr .05fr .6fr;
 }
 
-.city-weather, .city-forecast, .city-info {
+.city-weather, .city-forecast, .chart-info {
     -webkit-box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
     -moz-box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
     box-shadow: 11px 15px 25px -4px rgba(0,0,0,0.75);
@@ -26,8 +26,13 @@ body {
     background: rgba(255,255,255,0.7);
 }
 
-.city-info {
+.chart-info {
     grid-column: 3 / 4;
+}
+
+.chart-info > h3 {
+    text-align: center;
+    margin-top: 20px;
 }
 
 h2 {
@@ -125,3 +130,11 @@ div {
     font-size: 17px;
 }
 
+
+#chart > div > div > div > svg > rect {
+    fill: rgba(0, 0, 0, 0);
+}
+
+text {
+    font-style: normal;
+}

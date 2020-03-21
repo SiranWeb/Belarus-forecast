@@ -1,5 +1,6 @@
 import {fetchWeather, fetchForecast} from './weather.js';
 import {citySelect, cityName, imgWeather, weatherDescrp, cityTemp, windArrow, windSpeed, dateElem, visibilityElem, humidityElem, pressureElem, forecastDate, forecastCityTemp, imgForecastWeather, forecastWeatherDescrp} from './elements.js';
+import {createChart} from './createChart.js'
 
 const currentDate = new Date();
 
@@ -66,9 +67,15 @@ function displayForecast(data) {
 function getWeatherAndForecast(city) {
     getWeather(city);
     getForecast(city);
+    createChart([[1, 10],[2, 3],[3, 1]]);
 };
 
 getWeather();
 getForecast();
+createChart([
+    [[9, 30, 0, 0], 2],
+    [[10, 0, 0, 0], 5],
+    [[10, 30, 0, 0], 8]
+]);
 
 citySelect.addEventListener('change', () => getWeatherAndForecast(citySelect.options[citySelect.selectedIndex].value));
