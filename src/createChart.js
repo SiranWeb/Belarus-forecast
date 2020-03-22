@@ -7,7 +7,7 @@ export function createChart([rows, dynamicTicks]) {
     function drawBasic() {
 
         var data = new google.visualization.DataTable();
-        data.addColumn('timeofday', 'Time');
+        data.addColumn('string', 'Time');
         data.addColumn('number', 'Temp');
 
         data.addRows(rows);

@@ -75,17 +75,8 @@ function getDataForChart() {
     for (let i = 0; i <= 7; i++) {
         const currentItem = forecastData.list[i];
         const date = new Date(currentItem.dt * 1000);
-        if (chartRows.length == 0) {
-            chartRows.push([[date.getHours(), 0, 0, 0], currentItem.main.temp - 273.15]);
-            chartTicks.push([date.getHours(), 0, 0, 0]);
-        } else if (date.getHours() < chartRows[i - 1][0][0]) {
-            chartRows.unshift([[date.getHours(), 0, 0, 0], currentItem.main.temp - 273.15]);
-            chartTicks.unshift([date.getHours(), 0, 0, 0]);
-        } else {
-            chartRows.push([[date.getHours(), 0, 0, 0], currentItem.main.temp - 273.15]);
-            chartTicks.push([date.getHours(), 0, 0, 0]);
-        }
-        
+            chartRows.push([`${date.getHours()}:00`, currentItem.main.temp - 273.15]);
+            chartTicks.push(`${date.getHours()}:00`);
     }
     // console.log(chartRows);
     return [chartRows, chartTicks];
