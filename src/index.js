@@ -45,7 +45,9 @@ Date.prototype.getDayString = function(day = this.getDay()) {
 function displayWeather(data) {
     // console.log(data);
     cityName.innerHTML = `${data.name == 'Hrodna' ? 'Grodno' : data.name}, `; // Grodno name fix
-    dateElem.innerHTML = `${currentDate.getDayString()}, ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+    dateElem.innerHTML = `
+    ${currentDate.getDayString()}, 
+    ${String(currentDate.getHours()).length < 2 ? '0' + currentDate.getHours() : currentDate.getHours()}:${String(currentDate.getMinutes()).length < 2 ? '0' + currentDate.getMinutes() : currentDate.getMinutes()}`;
     imgWeather.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
     weatherDescrp.innerHTML = data.weather[0].description;
     cityTemp.innerHTML = Math.floor(data.main.temp - 273.15) + '°С';
@@ -59,7 +61,9 @@ function displayWeather(data) {
 function displayForecast(data) {
     // console.log(data);
     for (let i = 0; i < 5; i++) {
-        const dayName = (currentDate.getDay() + i) >= 7 ? currentDate.getDayString((currentDate.getDay() + i) % 7) : currentDate.getDayString(currentDate.getDay() + i);
+        const dayName = (currentDate.getDay() + i) >= 7 ?
+        currentDate.getDayString((currentDate.getDay() + i) % 7)
+        : currentDate.getDayString(currentDate.getDay() + i);
         const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).split('-').reverse().join('.');
         forecastDate[i].innerHTML = `${dayName} (${dayAndMonth})`;
         forecastCityTemp[i].innerHTML =  Math.floor(data.list[i*8 + 3].main.temp - 273.15) + '°С';
