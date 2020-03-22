@@ -48,7 +48,7 @@ function displayWeather(data) {
     dateElem.innerHTML = `
     ${currentDate.getDayString()}, 
     ${String(currentDate.getHours()).length < 2 ? '0' + currentDate.getHours() : currentDate.getHours()}:${String(currentDate.getMinutes()).length < 2 ? '0' + currentDate.getMinutes() : currentDate.getMinutes()}`;
-    imgWeather.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+    imgWeather.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
     weatherDescrp.innerHTML = data.weather[0].description;
     cityTemp.innerHTML = Math.floor(data.main.temp - 273.15) + '°С';
     windArrow.style.transform = `rotate(${data.wind.deg + 90}deg)`;
@@ -67,7 +67,7 @@ function displayForecast(data) {
         const dayAndMonth = data.list[i*8 + 3].dt_txt.substring(5, 10).split('-').reverse().join('.');
         forecastDate[i].innerHTML = `${dayName} (${dayAndMonth})`;
         forecastCityTemp[i].innerHTML =  Math.floor(data.list[i*8 + 3].main.temp - 273.15) + '°С';
-        imgForecastWeather[i].src = `http://openweathermap.org/img/w/${data.list[i*8 + 3].weather[0].icon}.png`;
+        imgForecastWeather[i].src = `https://openweathermap.org/img/w/${data.list[i*8 + 3].weather[0].icon}.png`;
         forecastWeatherDescrp[i].innerHTML = `${data.list[i*8 + 3].weather[0].description}`;
     }
     
