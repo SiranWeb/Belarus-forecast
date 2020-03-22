@@ -1,4 +1,4 @@
-###About
+### About
 Weather forecast of Belarus.
 
 - Current info about city
@@ -9,7 +9,7 @@ Weather forecast of Belarus.
 ------------
 
 
-###Used
+### Used
 
 - OpenWeatherMap API
 - Google Charts
@@ -19,5 +19,5 @@ Weather forecast of Belarus.
 
 
 
-###Try it
+### Try it
 Link: [siranweb.github.io/Belarus-forecast](https://siranweb.github.io/Belarus-forecast/ "siranweb.github.io/Belarus-forecast")
